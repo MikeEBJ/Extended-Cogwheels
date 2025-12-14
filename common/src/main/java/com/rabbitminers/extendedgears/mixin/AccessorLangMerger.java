@@ -1,14 +1,14 @@
 package com.rabbitminers.extendedgears.mixin;
 
-import com.simibubi.create.foundation.data.LangMerger;
-import com.simibubi.create.foundation.data.LangPartial;
+import com.simibubi.create.compat.archEx.LangProvider;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(value = LangMerger.class, remap = false)
+// TODO: Verify
+@Mixin(value = AccessorLangMerger.class, remap = false)
 public interface AccessorLangMerger {
     @Mutable
     @Accessor
-    void setLangPartials(LangPartial[] langPartials);
+    void setLangPartials(LangProvider[] langPartials);
 }

@@ -7,8 +7,9 @@ import com.rabbitminers.extendedgears.cogwheels.materials.CogwheelMaterialManage
 import com.rabbitminers.extendedgears.mixin_interface.IDynamicMaterialBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;
-import com.simibubi.create.foundation.utility.NBTHelper;
-import com.simibubi.create.foundation.utility.RegisteredObjects;
+import net.createmod.catnip.nbt.NBTHelper;
+import net.createmod.catnip.platform.CatnipServices;
+import net.createmod.catnip.platform.services.RegisteredObjectsHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
@@ -26,11 +27,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 import java.util.Optional;
-
+// TODO
 @Mixin(BracketedKineticBlockEntity.class)
 public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity implements IDynamicMaterialBlockEntity {
     @Unique
-    public ResourceLocation material = RegisteredObjects.getKeyOrThrow(Blocks.SPRUCE_PLANKS);
+    public ResourceLocation material = CatnipServices.REGISTRIES.getKeyOrThrow(Blocks.SPRUCE_PLANKS);
 
     public MixinBracketedKineticBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
@@ -92,7 +93,7 @@ public class MixinBracketedKineticBlockEntity extends SimpleKineticBlockEntity i
 
         material = NBTHelper.readResourceLocation(compound, "Material");
         if (material == null)
-            material = RegisteredObjects.getKeyOrThrow(Blocks.SPRUCE_PLANKS);
+            material = CatnipServices.REGISTRIES.getKeyOrThrow(Blocks.SPRUCE_PLANKS);
 
         if (clientPacket && prevMaterial != material)
             redraw();

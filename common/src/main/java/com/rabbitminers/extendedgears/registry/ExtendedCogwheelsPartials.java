@@ -1,7 +1,8 @@
 package com.rabbitminers.extendedgears.registry;
 
-import com.jozufozu.flywheel.core.PartialModel;
 import com.rabbitminers.extendedgears.ExtendedCogwheels;
+import dev.engine_room.flywheel.lib.model.baked.PartialModel;
+
 public class ExtendedCogwheelsPartials {
     public static final PartialModel
         COGWHEEL = block("shaftless_cogwheel"),

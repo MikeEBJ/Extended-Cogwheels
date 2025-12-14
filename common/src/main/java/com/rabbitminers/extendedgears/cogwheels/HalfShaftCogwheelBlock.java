@@ -2,7 +2,7 @@ package com.rabbitminers.extendedgears.cogwheels;
 
 import com.rabbitminers.extendedgears.mixin_interface.CogwheelTypeProvider;
 import com.simibubi.create.content.kinetics.simpleRelays.CogWheelBlock;
-import com.simibubi.create.foundation.utility.VoxelShaper;
+import net.createmod.catnip.math.VoxelShaper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
