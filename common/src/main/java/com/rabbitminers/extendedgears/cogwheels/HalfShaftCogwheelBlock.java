@@ -63,6 +63,23 @@ public class HalfShaftCogwheelBlock extends CogWheelBlock implements CogwheelTyp
         return isLargeCog() ? largeVoxelShape.get(dir) : voxelShape.get(dir);
     }
 
+    // Credit for costena
+    @Override
+    public BlockState getRotatedBlockState(BlockState originalState, Direction targetedFace) {
+        if (targetedFace.getAxis() == originalState.getValue(AXIS))
+            return originalState;
+        Direction direction = VoxelShaper
+                .axisAsFace(originalState.getValue(AXIS));
+        if (!originalState.getValue(AXIS_DIRECTION))
+            direction = direction.getOpposite();
+        if (targetedFace.getAxisDirection() == Direction.AxisDirection.POSITIVE)
+            direction = direction.getClockWise(targetedFace.getAxis());
+        else
+            direction = direction.getCounterClockWise(targetedFace.getAxis());
+        return originalState
+                .setValue(AXIS, direction.getAxis())
+                .setValue(AXIS_DIRECTION, direction.getAxisDirection() == Direction.AxisDirection.POSITIVE);
+    }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {

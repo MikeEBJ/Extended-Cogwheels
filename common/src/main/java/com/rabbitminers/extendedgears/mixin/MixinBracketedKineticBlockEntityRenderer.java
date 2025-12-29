@@ -14,6 +14,7 @@ import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockEn
 import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 
 import net.createmod.catnip.render.CachedBuffers;
+import net.createmod.catnip.render.SuperBufferFactory;
 import net.createmod.catnip.render.SuperByteBuffer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.resources.model.BakedModel;
@@ -45,7 +46,7 @@ public class MixinBracketedKineticBlockEntityRenderer extends KineticBlockEntity
                     : AxisDirection.POSITIVE;
             Direction dir = Direction.fromAxisAndDirection(state1.getValue(RotatedPillarKineticBlock.AXIS), axisDirection);
             PoseStack transform = CachedBuffers.rotateToFaceVertical(dir).get();
-            return BakedModelRenderHelper.standardModelRender(model, Blocks.AIR.defaultBlockState(), transform);
+            return SuperBufferFactory.getInstance().createForBlock(model, Blocks.AIR.defaultBlockState(), transform);
         });
     }
 }
